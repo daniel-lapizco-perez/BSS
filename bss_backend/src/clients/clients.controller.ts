@@ -1,21 +1,22 @@
 import { Controller, Post, Param, Put, Delete, Get, NotFoundException, ConflictException, HttpCode, Body } from '@nestjs/common';
 
-import { CreateClientDto } from 'src/dto/clients/create-client.dto';
-import { UpdateClientDto } from 'src/dto/clients/update-client.dto';
+import { CreateClientDto } from './dto/create-client.dto';
+import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientsService } from './clients.service';
-import { PATH_METADATA } from '@nestjs/common/constants';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Clients')
 @Controller('clients')
 export class ClientsController {
     constructor(private clientService: ClientsService){}
 
     @Get()
-    findAll(){
+    findAllClients(){
         return this.clientService.findAllClients();
     }
 
     @Get()
-    async findOne(@Param('id') id: string){
+    async findOneClient(@Param('id') id: string){
         const client = await this.clientService.findClient(id)
         if(!client) throw new NotFoundException('Client not found')
         return client;
