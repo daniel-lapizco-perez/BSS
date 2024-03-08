@@ -35,7 +35,7 @@ export declare class ClientsService {
     findAllClients(): Promise<(import("mongoose").Document<unknown, {}, Client> & Client & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    findClient(id: string): Promise<import("mongoose").Document<unknown, {}, Client> & Client & {
+    findOneClient(id: string): Promise<import("mongoose").Document<unknown, {}, Client> & Client & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     updateClient(id: string, client: UpdateClientDto): Promise<import("mongoose").Document<unknown, {}, Client> & Client & {

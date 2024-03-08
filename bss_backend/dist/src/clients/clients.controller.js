@@ -23,11 +23,11 @@ let ClientsController = class ClientsController {
     constructor(clientService) {
         this.clientService = clientService;
     }
-    findAllClients() {
-        return this.clientService.findAllClients();
+    async findAllClients() {
+        return await this.clientService.findAllClients();
     }
     async findOneClient(id) {
-        const client = await this.clientService.findClient(id);
+        const client = await this.clientService.findOneClient(id);
         if (!client)
             throw new common_1.NotFoundException('Client not found');
         return client;
@@ -65,10 +65,10 @@ __decorate([
     openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClientsController.prototype, "findAllClients", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -84,7 +84,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientsController.prototype, "createClient", null);
 __decorate([
-    (0, common_1.Delete)(),
+    (0, common_1.Delete)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -92,7 +92,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientsController.prototype, "deleteClient", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Put)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),

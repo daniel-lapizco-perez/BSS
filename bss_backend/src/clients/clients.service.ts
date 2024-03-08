@@ -18,7 +18,7 @@ export class ClientsService {
         return await this.clientModel.find();
     }
 
-    async findClient(id: string){
+    async findOneClient(id: string){
         return await this.clientModel.findById(id);
     }
 
